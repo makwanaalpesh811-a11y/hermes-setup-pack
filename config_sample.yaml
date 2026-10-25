@@ -1,0 +1,508 @@
+model:
+  default: sensenova-6.8-flash-lite
+  provider: custom
+  api_key: [REDACTED]
+providers:
+  bedrock-mantle:
+    base_url: https://bedrock-mantle.eu-north-1.api.aws/v1
+    key_env: [REDACTED]
+database:
+  journal_mode: wal
+runtime:
+  nofile_soft_limit: 4096
+agent:
+  max_turns: 150
+  service_tier: ''
+  fast_auto_seconds: 60
+  verbose: false
+  reasoning_effort: medium
+  personalities: {}
+terminal:
+  backend: local
+  cwd: .
+  timeout: 180
+  home_mode: auto
+  container_cpu: 1
+  container_memory: 5120
+  container_disk: 51200
+  container_persistent: true
+  docker_mount_cwd_to_workspace: false
+  lifetime_seconds: 300
+browser:
+  inactivity_timeout: 120
+  extension_control:
+    enabled: false
+  cloud_provider: local
+tool_loop_guardrails:
+  warnings_enabled: true
+  hard_stop_enabled: false
+  non_interactive_hard_stop_enabled: true
+  warn_after:
+    exact_failure: 2
+    same_tool_failure: 3
+    idempotent_no_progress: 2
+  hard_stop_after:
+    exact_failure: 5
+    same_tool_failure: 8
+    idempotent_no_progress: 5
+compression:
+  enabled: true
+  checkpoint_required: false
+  progress_notices: false
+  threshold: 0.5
+  target_ratio: 0.2
+  protect_last_n: 20
+  min_tail_user_messages: 1
+  max_attempts: 3
+  proactive_prune_tokens: [REDACTED]
+  proactive_prune_min_result_chars: 8000
+  proactive_prune_min_reclaim_tokens: [REDACTED]
+  hygiene_max_turn_hold_seconds: 10
+  protect_first_n: 3
+  codex_gpt55_autoraise: true
+  codex_app_server_auto: native
+  codex_responses_native: false
+  idle_compact_after_seconds: 0
+prompt_caching:
+  cache_ttl: 5m
+bedrock:
+  region: eu-north-1
+display:
+  compact: false
+  busy_input_mode: interrupt
+  bell_on_complete: false
+  bell_on_prompt: false
+  show_reasoning: false
+  background_process_notifications: concise
+  streaming: true
+  skin: default
+  interim_assistant_messages: true
+  tool_progress: all
+  cleanup_progress: false
+  long_running_notifications: true
+  busy_ack_detail: true
+stt:
+  enabled: true
+  language: en
+  local:
+    model: base
+  openai:
+    model: whisper-1
+    language: ''
+memory:
+  memory_enabled: true
+  user_profile_enabled: true
+  memory_char_limit: 4000
+  user_char_limit: 2500
+  nudge_interval: 10
+delegation:
+  max_iterations: 250
+skills:
+  creation_nudge_interval: 15
+command_allowlist:
+  - overwrite project env/config file
+  - command parser limit or malformed executable payload
+  - pipe remote content to shell
+  - execute_code
+  - copy/move file into sensitive credential/SSH/shell-rc path
+  - overwrite system config
+  - script execution via heredoc
+  - script execution via -e/-c flag
+kanban:
+  review_dispatch: true
+code_execution:
+  timeout: 300
+  max_tool_calls: 50
+gateway:
+  signal_interrupt_grace_timeout: 1
+  delivery_ledger: true
+  platform_connect_timeout: 30
+  loop_watchdog: true
+  loop_watchdog_probe_interval_s: 30.0
+  loop_watchdog_probe_timeout_s: 10.0
+  loop_watchdog_max_strikes: 3
+  startup_watchdog: true
+  startup_watchdog_timeout_seconds: 300
+  write_sessions_json: true
+  scale_to_zero:
+    idle_timeout_minutes: 2
+  restart_loop_guard:
+    max_restarts: 3
+    window_seconds: 60
+    max_gap_seconds: 300
+  respawn_storm:
+    max_starts: 5
+    window_seconds: 120
+  message_timestamps:
+    enabled: false
+  max_inbound_media_bytes: 134217728
+  trust_env: true
+  strict: false
+  media_delivery_allow_dirs: []
+  trust_recent_files: true
+  trust_recent_files_seconds: 600
+  api_server:
+    max_concurrent_runs: 10
+streaming:
+  enabled: false
+onboarding:
+  seen:
+    busy_input_prompt: true
+    tool_progress_prompt: true
+telemetry:
+  shared_metrics:
+    enabled: false
+    send: false
+updates:
+  check: true
+  pre_update_backup: false
+  backup_keep: 5
+  non_interactive_local_changes: stash
+computer_use:
+  backend: cua
+_config_version: 41
+group_sessions_per_user: true
+platform_toolsets:
+  cli:
+    - browser
+    - clarify
+    - code_execution
+    - computer_use
+    - cronjob
+    - delegation
+    - file
+    - image_gen
+    - memory
+    - session_search
+    - skills
+    - terminal
+    - todo
+    - tts
+    - vision
+    - web
+  telegram:
+    - hermes-telegram
+  discord:
+    - hermes-discord
+  whatsapp:
+    - hermes-whatsapp
+  slack:
+    - hermes-slack
+  signal:
+    - hermes-signal
+  homeassistant:
+    - hermes-homeassistant
+  qqbot:
+    - hermes-qqbot
+  yuanbao:
+    - hermes-yuanbao
+  teams:
+    - hermes-teams
+  google_chat:
+    - hermes-google_chat
+known_plugin_toolsets:
+  cli:
+    - a2a
+    - spotify
+known_builtin_toolsets:
+  cli:
+    - browser
+    - clarify
+    - code_execution
+    - computer_use
+    - context_engine
+    - cronjob
+    - delegation
+    - discord
+    - discord_admin
+    - file
+    - homeassistant
+    - image_gen
+    - memory
+    - session_search
+    - skills
+    - spotify
+    - stt
+    - terminal
+    - todo
+    - tts
+    - video
+    - video_gen
+    - vision
+    - web
+    - x_search
+    - yuanbao
+custom_providers:
+  - name: "51. gc/gemini-3.1-flash-lite-preview\n    52. gc/gemini-2.5-pro\n    53.\
+      \ gc/gemini-2.5-flash\n    54. gc/gemini-2.5-flash-lite\n  Select model [1-54]\
+      \ or type name: 2\nContext length in tokens [leave blank for auto-detect]:\n\
+      \nDisplay name [Local (localhost:20128)]"
+    base_url: http://localhost:20128/v1
+    key_env: [REDACTED]
+    model: cx/gpt-5.3-codex-spark-review
+    api_mode: codex_responses
+    models:
+      cx/gpt-6-astra: {}
+      cx/gpt-5.6-sol: {}
+      cx/gpt-5.6-sol-review: {}
+      cx/gpt-5.6-terra: {}
+      cx/gpt-5.6-terra-review: {}
+      cx/gpt-5.6-luna: {}
+      cx/gpt-5.6-luna-review: {}
+      cx/gpt-5.5: {}
+      cx/gpt-5.5-review: {}
+      cx/gpt-5.4: {}
+      cx/gpt-5.4-review: {}
+      cx/gpt-5.4-mini: {}
+      cx/gpt-5.4-mini-review: {}
+      cx/gpt-5.3-codex-spark: {}
+      cx/gpt-5.3-codex-spark-review: {}
+      gh/copilot-search-a: {}
+      gh/copilot-search-b: {}
+      gh/copilot-search-c: {}
+      gh/exec-agent-a: {}
+      gh/exec-agent-b: {}
+      gh/exec-agent-c: {}
+      gh/gpt-5.4-mini-free-auto: {}
+      gh/gpt-5.6-luna: {}
+      gh/mai-code-1.1-flash: {}
+      gh/mai-code-1-flash-4th: {}
+      gh/mai-code-1-flash-picker: {}
+      gh/mai-code-1-flash-secondary: {}
+      gh/mai-code-1-flash-tertiary: {}
+      gh/mai-code-1-flash: {}
+      gh/trajectory-compaction: {}
+      gh/gpt-5-mini: {}
+      gh/gpt-4o-mini-2024-07-18: {}
+      gh/gpt-4o-2024-11-20: {}
+      gh/gpt-4o-2024-08-06: {}
+      gh/claude-haiku-4.5: {}
+      gh/gpt-4.1-2025-04-14: {}
+      gh/gpt-5.6-luna-free-auto: {}
+      gh/gpt-3.5-turbo-0613: {}
+      gh/gpt-4: {}
+      gh/gpt-4-0613: {}
+      gh/gpt-4-0125-preview: {}
+      gh/gpt-4o-2024-05-13: {}
+      gh/gpt-4-o-preview: {}
+      gh/gpt-4.1: {}
+      gh/gpt-3.5-turbo: {}
+      gh/gpt-4o-mini: {}
+      gh/gpt-4o: {}
+      gc/gemini-3.1-pro-preview: {}
+      gc/gemini-3-pro-preview: {}
+      gc/gemini-3-flash-preview: {}
+      gc/gemini-3.1-flash-lite-preview: {}
+      gc/gemini-2.5-pro: {}
+      gc/gemini-2.5-flash: {}
+      gc/gemini-2.5-flash-lite: {}
+    models_discovered: true
+  - name: Api.xkiro.com
+    base_url: https://api.xkiro.com/v1
+    key_env: [REDACTED]
+    model: openai/gpt-5.3-codex-spark
+    api_mode: anthropic_messages
+    models:
+      google/gemini-3.6-flash: {}
+      openai/gpt-6.1-sol: {}
+      x-ai/grok-4.5: {}
+      mistralai/ministral-14b: {}
+      anthropic/claude-opus-4.8: {}
+      x-ai/grok-4.7: {}
+      anthropic/claude-haiku-5.5: {}
+      anthropic/claude-sonnet-5.5: {}
+      anthropic/claude-opus-5: {}
+      minimax/minimax-m3: {}
+      minimax/minimax-m2.7: {}
+      minimax/minimax-m2.7-highspeed: {}
+      openai/gpt-6-astra: {}
+      openai/gpt-6-sol: {}
+      anthropic/claude-opus-4.5: {}
+      anthropic/claude-sonnet-4.6: {}
+      anthropic/claude-haiku-4.5: {}
+      google/gemini-3.8-flash: {}
+      moonshotai/kimi-k2.8-preview-agent: {}
+      qwen/qwen3-vl-plus:free: {}
+      google/gemini-3.7-flash: {}
+      x-ai/grok-4.6: {}
+      anthropic/claude-fable-5-1: {}
+      anthropic/claude-fable-5: {}
+      cohere/north-mini-code: {}
+      cohere/command-r-08-2024: {}
+      qwen/qwen-plus-2025-07-28:free: {}
+      sensenova/sensenova-6.8-flash-lite: {}
+      cohere/command-a: {}
+      cohere/aya-vision-32b: {}
+      mistralai/ministral-3b: {}
+      anthropic/claude-sonnet-4: {}
+      cohere/tiny-aya-earth: {}
+      cohere/tiny-aya-global: {}
+      cohere/command-r-plus-08-2024: {}
+      cohere/aya-expanse-32b: {}
+      openai/gpt-5.6-terra: {}
+      cohere/tiny-aya-fire: {}
+      minimax/minimax-m3.1-flash: {}
+      cohere/command-a-plus: {}
+      anthropic/claude-opus-4.6: {}
+      openai/gpt-6-luna: {}
+      google/gemini-3.5-flash: {}
+      anthropic/claude-sonnet-4.5: {}
+      google/gemini-3.1-pro: {}
+      openai/gpt-5.6-luna: {}
+      anthropic/claude-sonnet-5: {}
+      google/gemini-2.5-flash: {}
+      mistralai/mistral-large-4-0: {}
+      moonshotai/kimi-k3-agent: {}
+      mistralai/mistral-large-2512: {}
+      mistralai/mistral-medium-3.5: {}
+      mistralai/mistral-small-2603: {}
+      mistralai/devstral-medium: {}
+      anthropic/claude-opus-5.5: {}
+      mistralai/codestral-2508: {}
+      cohere/command-a-translate: {}
+      google/gemini-3-flash: {}
+      minimax/minimax-m2.5: {}
+      minimax/minimax-m2.1: {}
+      qwen/qwen3-omni-flash:free: {}
+      mistralai/ministral-8b: {}
+      xiaomi/mimo-v2.6-pro: {}
+      google/gemini-2.5-pro: {}
+      xiaomi/mimo-v2.6-flash: {}
+      anthropic/claude-opus-4.7: {}
+      minimax/minimax-m2.5-highspeed: {}
+      minimax/minimax-m2.1-highspeed: {}
+      minimax/minimax-m2: {}
+      xiaomi/mimo-v2.5: {}
+      qwen/qwen3.6-plus:free: {}
+      qwen/qwen3.7-max:free: {}
+      meituan/longcat-2.0: {}
+      meituan/longcat-2.5-preview:free: {}
+      openai/gpt-5.6-sol: {}
+      qwen/qwen3.7-plus:free: {}
+      nvidia/nemotron-3-ultra: {}
+      stealth/big-pickle: {}
+      qwen/qwen3.5-omni-flash:free: {}
+      cohere/command-r7b-12-2024: {}
+      nvidia/nemotron-3-nano-omni: {}
+      qwen/qwen3.8-max:free: {}
+      qwen/qwen3.8-omni-flash:free: {}
+      qwen/qwen3.7-flash:free: {}
+      qwen/qwen3.6-max-preview:free: {}
+      qwen/qwen3-coder-plus:free: {}
+      cohere/north-small-translate: {}
+      qwen/qwen3.6-27b:free: {}
+      qwen/qwen3.5-plus:free: {}
+      cohere/command-a-vision: {}
+      cohere/command-a-reasoning: {}
+      qwen/qwen3.5-omni-plus:free: {}
+      qwen/qwen3.6-35b-a3b:free: {}
+      qwen/qwen3.5-flash:free: {}
+      cohere/tiny-aya-water: {}
+      qwen/qwen3.5-397b-a17b:free: {}
+      qwen/qwen3-max:free: {}
+    models_discovered: true
+  - name: Bedrock-mantle.eu-north-1.api.aws
+    base_url: https://bedrock-mantle.eu-north-1.api.aws/v1
+    key_env: [REDACTED]
+    model: google.gemma-3-27b-it
+    models:
+      google.gemma-3-12b-it: {}
+      openai.gpt-oss-safeguard-20b: {}
+      nvidia.nemotron-nano-3-30b: {}
+      mistral.ministral-3-3b-instruct: {}
+      qwen.qwen3-235b-a22b-2507: {}
+      anthropic.claude-opus-5: {}
+      zai.glm-4.6: {}
+      google.gemma-3-4b-it: {}
+      mistral.devstral-2-123b: {}
+      moonshotai.kimi-k2-thinking: {}
+      zai.glm-4.7-flash: {}
+      openai.gpt-oss-120b: {}
+      qwen.qwen3-32b: {}
+      anthropic.claude-sonnet-5: {}
+      openai.gpt-oss-safeguard-120b: {}
+      minimax.minimax-m2.5: {}
+      zai.glm-4.7: {}
+      qwen.qwen3-coder-480b-a35b-instruct: {}
+      nvidia.nemotron-nano-9b-v2: {}
+      anthropic.claude-opus-4-7: {}
+      anthropic.claude-opus-4-8: {}
+      openai.gpt-oss-20b: {}
+      nvidia.nemotron-super-3-120b: {}
+      google.gemma-3-27b-it: {}
+      zai.glm-5: {}
+      mistral.voxtral-small-24b-2507: {}
+      nvidia.nemotron-nano-12b-v2: {}
+      writer.palmyra-vision-7b: {}
+      qwen.qwen3-vl-235b-a22b-instruct: {}
+      qwen.qwen3-coder-30b-a3b-instruct: {}
+      deepseek.v3.1: {}
+      mistral.ministral-3-8b-instruct: {}
+      deepseek.v3.2: {}
+      moonshotai.kimi-k2.5: {}
+      mistral.ministral-3-14b-instruct: {}
+      qwen.qwen3-next-80b-a3b-instruct: {}
+      anthropic.claude-haiku-4-5: {}
+      qwen.qwen3-coder-next: {}
+      minimax.minimax-m2: {}
+      mistral.mistral-large-3-675b-instruct: {}
+      minimax.minimax-m2.1: {}
+      mistral.voxtral-mini-3b-2507: {}
+      mistral.magistral-small-2509: {}
+    models_discovered: true
+  - name: Token.sensenova.ai
+    key_env: [REDACTED]
+    model: sensenova-6.8-flash-lite
+    models:
+      sensenova-6.7-flash-lite: {}
+      sensenova-u1-fast: {}
+      sensenova-6.8-flash-lite: {}
+      sensenova-u1.5-lite: {}
+    models_discovered: true
+mcp_servers:
+  delta_exchange:
+    command: uvx
+    args:
+      - delta-exchange-mcp
+    env:
+      DELTA_MCP_ENV: india_prod
+      DELTA_MCP_MODE: read
+TELEGRAM_ALLOWED_USERS: 8167438970
+
+# ── Security ──────────────────────────────────────────────────────────
+# Secret redaction is ON by default — strings that look like API keys,
+# tokens, and passwords are masked in tool output, logs, and chat
+# responses before the model or user ever sees them. Set redact_secrets
+# to false to disable (e.g. when developing the redactor itself).
+# tirith pre-exec scanning is enabled by default when the tirith binary
+# is available. Configure via security.tirith_* keys or env vars
+# (TIRITH_ENABLED, TIRITH_BIN, TIRITH_TIMEOUT, TIRITH_FAIL_OPEN).
+#
+# security:
+#   redact_secrets: [REDACTED]
+#   tirith_enabled: true
+#   tirith_path: "tirith"
+#   tirith_timeout: 5
+#   tirith_fail_open: true
+
+# ── Fallback Model ────────────────────────────────────────────────────
+# Automatic provider failover when primary is unavailable.
+# Uncomment and configure to enable. Triggers on rate limits (429),
+# overload (529), service errors (503), or connection failures.
+#
+# Supported providers:
+#   openrouter   (OPENROUTER_API_KEY)  — routes to any model
+#   openai-codex (OAuth — hermes auth) — OpenAI Codex
+#   nous         (OAuth — hermes auth) — Nous Portal
+#   zai          (ZAI_API_KEY)         — Z.AI / GLM
+#   kimi-coding  (KIMI_API_KEY)        — Kimi / Moonshot
+#   kimi-coding-cn (KIMI_CN_API_KEY)   — Kimi / Moonshot (China)
+#   minimax      (MINIMAX_API_KEY)     — MiniMax
+#   minimax-cn   (MINIMAX_CN_API_KEY)  — MiniMax (China)
+#   bedrock      (AWS IAM / boto3)     — AWS Bedrock (Converse API)
+#
+# For custom OpenAI-compatible endpoints, add base_url and key_env.
+#
+# fallback_model:
+#   provider: openrouter
+#   model: anthropic/claude-sonnet-4

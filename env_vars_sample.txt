@@ -1,0 +1,28 @@
+# Key Hermes env vars (Phone 1 snapshot)
+# DO NOT include any tokens/keys here — they're in ~/.hermes/.env
+
+HERMES_AGENT=true
+HERMES_DEFER_AGENT_STARTUP=1
+HERMES_EXEC_ASK=1
+HERMES_FAST_STARTUP_BANNER=1
+HERMES_GATEWAY_BUSY_INPUT_MODE=interrupt
+HERMES_GATEWAY_PLATFORM_CONNECT_TIMEOUT=30
+HERMES_INTERACTIVE=1
+HERMES_KANBAN_BOARD=default
+HERMES_MAX_ITERATIONS=150
+HERMES_MEDIA_DELIVERY_STRICT=0
+HERMES_MEDIA_TRUST_RECENT_FILES=1
+HERMES_MEDIA_TRUST_RECENT_SECONDS=600
+HERMES_QUIET=1
+HERMES_REAL_HOME=/data/data/com.termux/files/home
+HERMES_STARTUP_WATCHDOG_TIMEOUT_S=300
+HERMES_TURN_LEASE_TIMEOUT=5
+TERMINAL_HOME_MODE=auto
+
+# PATH (Termux default)
+PATH=/data/data/com.termux/files/usr/bin:/data/data/com.termux/files/home/.hermes/bin:/bin:/sbin:/usr/bin:/usr/sbin
+
+# TERMUX (system-provided, don't set manually)
+# TERMUX_APP__APP_VERSION_NAME=0.119.0-beta.3
+# TERMUX__HOME=/data/data/com.termux/files/home
+# TERMUX__PREFIX=/data/data/com.termux/files/usr
